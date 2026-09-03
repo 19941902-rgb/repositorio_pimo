@@ -37,6 +37,7 @@ INSERT INTO productos (nombre_producto, categoria_id, stock, precio) VALUES
 ('Laptop Dell Inspiron 15', 1, 15, 720.00),
 ('Mouse Inalámbrico Logitech', 2, 25, 12.00); 
 
+<<<<<<< HEAD
 -- CONSULTAS DE ESTADÍSTICAS Y MÉTRICAS PARA EL DASHBOARD (Guía 12)-- Tarjeta 1: Total de artículos distintos en el catálogo (Muestra variedad de productos)
 SELECT COUNT(id) AS total_productos_catalogo FROM productos;
 
@@ -55,3 +56,17 @@ SELECT c.nombre_categoria, SUM(p.stock) AS existencias_totales
 FROM productos p
 INNER JOIN categorias c ON p.categoria_id = c.id
 GROUP BY c.nombre_categoria;
+=======
+-- REPORTES RELACIONALES AVANZADOS (Guía 11)
+-- 1. Vista completa del inventario con categorías legibles para administración:
+SELECT p.id, p.nombre_producto, c.nombre_categoria, p.stock, p.precio 
+FROM productos p
+INNER JOIN categorias c ON p.categoria_id = c.id
+ON p.categoria_id = c.id;
+
+-- 2. Vista filtrada exclusivamente para el departamento de 'Accesorios':
+SELECT p.id, p.nombre_producto, c.nombre_categoria, p.stock, p.precio 
+FROM productos p
+INNER JOIN categorias c ON p.categoria_id = c.id 
+WHERE c.nombre_categoria = 'Accesorios';
+>>>>>>> 11da4c8a5a3037d9d1294164c69da4ca01b0c39c
