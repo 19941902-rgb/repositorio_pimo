@@ -76,6 +76,9 @@ background 0.3s; }
 $_SESSION['rol']; ?>)</span>
 </h1>
 <a href="logout.php" class="btn-salir">Cerrar Sesión</a>
+<a href="nueva_compra.php" class="modulo" style="background:#10b981;">📥 Registrar
+<a href="historial_compras.php" class="modulo">Historial de compras</a>
+Ingreso de Mercadería</a>
 </div>
 
 <!-- Panel de Métricas Dinámicas -->
