@@ -6,13 +6,12 @@ header("Location: index.php");
 exit();
 }
 require_once 'conexion.php';
-$sql = "SELECT c.id AS numero_factura, c.fecha, p.nombre_empresa AS proveedor,
-u.nombre_completo AS cajero, c.total
+$sql = "SELECT c.id AS numero_factura, c.fecha, c.total, c.estado, p.nombre_empresa AS
+proveedor, u.nombre_completo AS usuario
 FROM compras c
 INNER JOIN proveedores p ON c.proveedor_id = p.id
 INNER JOIN usuarios u ON c.usuario_id = u.id
-ORDER BY c.id DESC";
-$resultado = $conn->query($sql);
+ORDER BY c.fecha DESC";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,6 +51,21 @@ th { background-color: #1e293b; color: #ffffff; }
 <th>Total Invertido</th>
 </tr>
 </thead>
+<th>Estado</th>
+<!-- En <tbody> dentro del while -->
+<td>
+<?php if ($fila['estado'] === 'COMPLETADA'): ?>
+
+<span style="background: #dcfce7; color: #15803d; padding: 4px 8px; border-
+radius: 12px; font-size: 11px; font-weight: bold;">ACTIVA</span>
+
+<?php else: ?>
+
+<span style="background: #fee2e2; color: #b91c1c; padding: 4px 8px; border-
+radius: 12px; font-size: 11px; font-weight: bold;">ANULADA</span>
+
+<?php endif; ?>
+</td>
 <tbody>
     <td>
 <a href="detalle_compra.php?id=<?php echo $fila['numero_factura']; ?>" style="background:
